@@ -22,7 +22,7 @@ namespace EmployeeApp
         //METHODS
         public override decimal CalculatePay()
         {
-            return BaseSalary;
+            return BaseSalary < 0 ? 0 : BaseSalary; //This checks if it is negative, if it is makes it 0
         }
 
         public override string ToString()
