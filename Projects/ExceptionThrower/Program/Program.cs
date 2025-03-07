@@ -17,10 +17,8 @@ namespace Program
     public class UserInputValidator
     {
         //Username Validator
-        public static string EnterUsername()
+        public static string EnterUsername(string Username)
         {
-            Console.WriteLine("Please enter your username");
-            string Username = Console.ReadLine();
 
             if (Username == null)//Ensures that Username is not Null
             {
@@ -39,10 +37,10 @@ namespace Program
         }
 
         //Password Validator
-        public static string EnterPassword()
+        public static string EnterPassword(string Password)
         {
-            Console.WriteLine("Please enter your password");
-            string Password = Console.ReadLine();
+      
+            
 
             if (Password == null) //Ensures the password is not blank
             {
@@ -70,17 +68,30 @@ namespace Program
         {
             String Username;
             String Password;
-
-            try
-            {
-                Username = UserInputValidator.EnterUsername();
-                Password = UserInputValidator.EnterPassword();
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine($"Error: {ex}");
-            }
             
+            int attempts = 0;
+
+            while (attempts != 3)
+            {
+                attempts++;
+                try
+                {
+                    Console.WriteLine("Please enter your username");
+                    Username = UserInputValidator.EnterUsername(Console.ReadLine());
+                    Console.WriteLine("Please enter your password");
+                    Password = UserInputValidator.EnterPassword(Console.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.ReadLine();
+                    Console.Clear();
+                    continue;
+                }
+
+                Console.WriteLine("Login accepted");
+                break;
+            }
         }
     }
 }
